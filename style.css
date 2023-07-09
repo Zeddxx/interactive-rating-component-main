@@ -30,7 +30,7 @@ main{
 }
 .card{
     background: var(--dark-blue);
-    min-height: 52%;
+    min-height: 45%;
     max-width: 340px;
     padding: 1.5rem 1rem;
     border-radius: 1rem;
@@ -152,9 +152,4 @@ span.active{
 .thank-div > p{
     font-weight: lighter;
     color: var(--light-grey);
-}
-@media screen and (width <= 780px){
-    .ratings >span:hover{
-        background: var(--light-grey);
-    }
 }
