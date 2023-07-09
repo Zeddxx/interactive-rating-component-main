@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+  <!-- Rating state start -->
+
+  <main class="main-body">
+    <section class="card">
+      <div class="content-div">
+        <div class="star"><img src="./images/icon-star.svg" alt="Star Icon"></div>
+        <h1>How did we do?</h1>
+        <p>  Please let us know how we did with your support request. All feedback is appreciated 
+          to help us improve our offering!</p>
+      </div>
+      <div class="rating-nd-submit">
+        <div class="ratings">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+        </div>
+        <button type="submit" onclick="submited()">submit</button>
+      </div>
+    </section>
+    <section class="card done">
+      <div class="selected-div">
+        <img src="./images/illustration-thank-you.svg" alt="Thank you">
+        <p>You selected <span class="rate"></span> out of 5</p>
+      </div>
+      <div class="thank-div">
+        <h2>Thank you!</h2>
+        <p>We appreciate you taking the time to give a rating. If you ever need more support, 
+          don’t hesitate to get in touch!</p>
+      </div>
+    </section>
+  </main>
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+
+  <script>
+    let ratingsBtns = document.querySelectorAll('.ratings span');
+    let userRating = document.querySelector('.rate');
+ratingsBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    // Check if the button already has the "active" class
+    ratingsBtns.forEach(clicked => {
+      clicked.classList.remove('active');
+    })
+    btn.classList.add('active');
+    let clickedValue = btn.innerText;
+    userRating.innerText = clickedValue;
+    // console.log('clicked: ',clickedValue);
+  });
+});
+let submitedMsg = document.querySelector('.done');
+
+
+function autoHide(){
+  setTimeout(()=> {
+    submitedMsg.style.display = 'none';
+  },4000)
+}
+
+function submited(){
+  const isActive = Array.from(ratingsBtns).some(btn => btn.classList.contains('active'));
+  if(!isActive){
+    alert("Please select at least one option");
+  }else{
+    submitedMsg.style.display = 'flex';
+    autoHide();
+  }
+  
+  // console.log(ratingsBtns);
+  // console.log('submit');
+}
+  </script>
+</body>
+</html>
